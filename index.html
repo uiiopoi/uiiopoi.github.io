@@ -251,7 +251,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <div class="wrap hero-grid">
     <div>
       <div class="eyebrow"><span lang="en">UC Berkeley · Energy Finance</span><span lang="zh">加州大学伯克利分校 · 能源金融</span></div>
-      <h1>Leyao Zhang</h1>
+      <h1>Leyao Zhang<span class="zh-name">张乐尧</span></h1>
       <p class="tagline">
         <span lang="en">I build financial models for the energy transition, from <em>project finance and tax equity</em> to <em>pricing power for AI data centers</em>.</span>
         <span lang="zh">我为能源转型搭建财务模型：从<em>项目融资与税收股权</em>，到<em>为 AI 数据中心的电力定价</em>。</span>
@@ -484,7 +484,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     root.setAttribute('data-lang',l);
     root.setAttribute('lang',l==='zh'?'zh-CN':'en');
     document.querySelectorAll('#langBtn [data-l]').forEach(function(s){s.className=s.getAttribute('data-l')===l?'on':''});
-    document.title=l==='zh'?'Leyao Zhang · 能源金融':'Leyao Zhang · Energy Finance';
+    document.title=l==='zh'?'张乐尧 · 能源金融':'Leyao Zhang · Energy Finance';
     store('lang',l);
   }
   var saved=store('lang');
