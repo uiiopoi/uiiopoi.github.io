@@ -1,6 +1,7 @@
 /* Interactive charts built from SPUR Combined Model v8 (static values from the workbook). */
 (function () {
   var NS = 'http://www.w3.org/2000/svg';
+  var VW = innerWidth < 600 ? 430 : 560; // narrower canvas on phones so text stays legible
   var CFG = [
     { k: 'S', en: 'Solar + BESS', zh: '光伏 + 储能', c: '--s-solar' },
     { k: 'W', en: 'Wind + BESS', zh: '风电 + 储能', c: '--s-wind' },
@@ -89,7 +90,8 @@
   /* ---------- Chart A: breakeven ---------- */
   function chartA() {
     var root = document.getElementById('vizA'); if (!root) return;
-    var svg = root.querySelector('svg'), W = 560, H = 320, m = { l: 46, r: 92, t: 16, b: 40 };
+    var svg = root.querySelector('svg'), W = VW, H = 320, m = { l: 46, r: 92, t: 16, b: 40 };
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
     var state = { lever: 'm4', itc: 30 }, cur = null, drawn = false;
     function target() {
       var o = { y0: 0, y1: 0, s: {} };
@@ -170,7 +172,8 @@
   /* ---------- Chart B: negotiation zone ---------- */
   function chartB() {
     var root = document.getElementById('vizB'); if (!root) return;
-    var svg = root.querySelector('svg'), W = 560, H = 250, m = { l: 92, r: 18, t: 30, b: 40 }, X1 = 175, drawn = false;
+    var svg = root.querySelector('svg'), W = VW, H = 250, m = { l: 92, r: 18, t: 30, b: 40 }, X1 = 175, drawn = false;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
     var x = function (v) { return m.l + v / X1 * (W - m.l - m.r); }, band = (H - m.t - m.b) / 3, bh = 22;
     function render(g) {
       svg.innerHTML = '';
@@ -218,7 +221,8 @@
   /* ---------- Chart C: bargaining share ---------- */
   function chartC() {
     var root = document.getElementById('vizC'); if (!root) return;
-    var svg = root.querySelector('svg'), W = 560, H = 330, m = { l: 50, r: 20, t: 16, b: 42 }, slider = root.querySelector('input[type=range]'), out = root.querySelector('.vz-out');
+    var svg = root.querySelector('svg'), W = VW, H = 330, m = { l: 50, r: 20, t: 16, b: 42 }, slider = root.querySelector('input[type=range]'), out = root.querySelector('.vz-out');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
     var x = function (v) { return m.l + v / .65 * (W - m.l - m.r); }, y = function (v) { return m.t + (1 - v / .45) * (H - m.t - m.b); };
     function at(k, a) {
       var A = F4.a, i = 0; while (i < A.length - 2 && a > A[i + 1]) i++;
@@ -262,7 +266,8 @@
   /* ---------- Chart D: why the ceiling is high ---------- */
   function chartD() {
     var root = document.getElementById('vizD'); if (!root) return;
-    var svg = root.querySelector('svg'), W = 560, H = 300, m = { l: 46, r: 150, t: 16, b: 44 }, Y1 = 250, drawn = false;
+    var svg = root.querySelector('svg'), W = VW, H = 300, m = { l: 46, r: 150, t: 16, b: 44 }, Y1 = 250, drawn = false;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
     var y = function (v) { return m.t + (1 - v / Y1) * (H - m.t - m.b); }, cols = [
       { en: 'Energy-only PPA', zh: '仅电能 PPA', parts: [{ v: 72, energy: true, en: 'Energy-only PPA', zh: '仅电能 PPA' }] },
       { en: 'Utility tariff', zh: '电力公司电价', parts: [{ v: 236.91, util: true, en: 'PG&E B-20 bundled rate', zh: 'PG&E B-20 打包电价' }] },

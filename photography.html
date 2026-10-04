@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Photography · Leyao Zhang</title>
 <meta name="description" content="Photography by Leyao Zhang.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101a2b'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23f2b33d' text-anchor='middle'%3ELZ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0a'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23d9c7a5' text-anchor='middle'%3ELZ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0b0d10; --bg-2:#13161b; --ink:#f1efe9; --ink-2:#c4c1b8; --muted:#8a877f; --line:#24272e; --accent:#f2b33d;
-  --serif:"Fraunces","Noto Serif SC",Georgia,serif; --sans:"Inter","Noto Sans SC",system-ui,-apple-system,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  --bg:#0b0b0a; --bg-2:#141412; --ink:#efe9dd; --ink-2:#bdb6a8; --muted:#857f74; --line:#262420; --accent:#d9c7a5;
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Instrument Sans",system-ui,-apple-system,sans-serif; --mono:"Instrument Sans",system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -23,10 +23,10 @@ a{color:inherit}
 .wrap{max-width:1400px;margin:0 auto;padding:0 32px}
 
 nav{position:fixed;top:0;left:0;right:0;z-index:30;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
-nav.solid{background:rgba(11,13,16,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+nav.solid{background:rgba(11,11,10,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
 .back{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:500;font-size:14px;color:var(--ink-2)}
-.back b{font-family:var(--serif);font-size:21px;color:var(--ink);letter-spacing:-.02em}
+.back b{font-family:var(--serif);font-size:21px;font-weight:500;color:var(--ink);letter-spacing:.02em}
 .back b span{color:var(--accent)}
 .back:hover{color:var(--ink)}
 .btn-ghost{font:500 13px var(--sans);color:var(--ink);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18);border-radius:999px;height:34px;padding:0 14px;cursor:pointer}
@@ -36,7 +36,7 @@ nav.solid{background:rgba(11,13,16,.82);backdrop-filter:blur(14px);-webkit-backd
 .hero{position:relative;height:92vh;min-height:520px;display:flex;align-items:flex-end;overflow:hidden}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);animation:settle 2.4s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes settle{to{transform:scale(1)}}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,13,16,.45) 0%,rgba(11,13,16,0) 30%,rgba(11,13,16,.15) 55%,var(--bg) 100%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,10,.45) 0%,rgba(11,11,10,0) 30%,rgba(11,11,10,.15) 55%,var(--bg) 100%)}
 .hero-txt{position:relative;z-index:2;padding-bottom:64px;width:100%}
 .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
 h1{font-family:var(--serif);font-weight:400;font-size:clamp(52px,9vw,128px);line-height:.95;letter-spacing:-.04em}
@@ -45,7 +45,7 @@ h1 i{font-style:italic;color:var(--ink-2)}
 .hero-meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--mono);font-size:12px;color:var(--muted)}
 
 /* series index */
-.index{position:sticky;top:64px;z-index:20;background:rgba(11,13,16,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.index{position:sticky;top:64px;z-index:20;background:rgba(11,11,10,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .index .wrap{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-top:12px;padding-bottom:12px}
 .index .wrap::-webkit-scrollbar{display:none}
 .index a{flex:none;text-decoration:none;font-size:13.5px;padding:7px 14px;border-radius:999px;color:var(--ink-2);border:1px solid var(--line);transition:all .2s;white-space:nowrap}
@@ -61,7 +61,7 @@ h1 i{font-style:italic;color:var(--ink-2)}
 .s-title{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.6vw,60px);letter-spacing:-.03em;line-height:1}
 .s-meta{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;padding-bottom:8px;white-space:nowrap}
 .grid{columns:3 320px;column-gap:14px}
-.ph{break-inside:avoid;margin-bottom:14px;position:relative;cursor:zoom-in;overflow:hidden;border-radius:4px;background:var(--bg-2);display:block;width:100%;border:0;padding:0}
+.ph{break-inside:avoid;margin-bottom:14px;position:relative;cursor:zoom-in;overflow:hidden;border-radius:0;background:var(--bg-2);display:block;width:100%;border:0;padding:0}
 .ph img{display:block;width:100%;height:auto;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .6s;opacity:0}
 .ph img.ld{opacity:1}
 .ph:hover img{transform:scale(1.035)}
@@ -106,7 +106,7 @@ footer a{color:var(--ink-2)}
 <body>
 <nav id="nav">
   <div class="wrap nav-in">
-    <a class="back" href="./" aria-label="Back to main site">←&nbsp;<b>L<span>.</span>Z</b></a>
+    <a class="back" href="./" aria-label="Back to main site">←&nbsp;<b>Leyao Zhang</b></a>
   </div>
 </nav>
 
