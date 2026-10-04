@@ -192,6 +192,68 @@ h2{font-family:var(--serif);font-weight:600;font-size:clamp(32px,4.2vw,46px);let
 footer{border-top:1px solid var(--line);padding:26px 0;font-size:13px;color:var(--muted)}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
+
+/* model charts */
+:root{--s-solar:#eb6834;--s-wind:#2a78d6;--s-geo:#1baf7a;--floor:#d9d3c7;--wash:#efe8da;--energy:#9aa3b2;--wires:#e29a1b}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--s-solar:#d95926;--s-wind:#3987e5;--s-geo:#199e70;--floor:#2c3850;--wash:#1d2840;--energy:#5b6578;--wires:#f2b33d}}
+:root[data-theme="dark"]{--s-solar:#d95926;--s-wind:#3987e5;--s-geo:#199e70;--floor:#2c3850;--wash:#1d2840;--energy:#5b6578;--wires:#f2b33d}
+.model-intro{color:var(--ink-2);max-width:44em;margin:-16px 0 32px;font-size:17px}
+.viz-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.viz{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px 18px;margin:0;display:flex;flex-direction:column;min-width:0}
+.vz-head h3{font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:-.01em;line-height:1.25}
+.vz-head p{font-size:14px;color:var(--muted);margin-top:4px}
+.vz-ctrl{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.vz-seg{display:inline-flex;background:var(--bg-2);border:1px solid var(--line);border-radius:999px;padding:3px}
+.vz-seg button{font:500 12.5px var(--sans);color:var(--ink-2);background:none;border:0;border-radius:999px;padding:6px 12px;cursor:pointer;min-height:30px}
+.vz-seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.vz-slider{flex-direction:column;gap:6px}
+.vz-slider label{font-size:12.5px;color:var(--muted)}
+.vz-slider input{width:100%;accent-color:var(--accent);height:28px}
+.vz-out{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--ink-2);font-family:var(--mono)}
+.vz-out b{color:var(--ink)}
+.vz-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--ink-2);margin:14px 0 4px}
+.vz-legend span,.vz-out span{display:inline-flex;align-items:center;gap:6px}
+.vk{display:inline-block;width:14px;height:3px;border-radius:2px;background:var(--k)}
+.vk.dash{background:repeating-linear-gradient(90deg,var(--k) 0 4px,transparent 4px 7px)}
+.viz svg{width:100%;height:auto;display:block;overflow:visible;margin-top:6px}
+.vz-grid{stroke:var(--line);stroke-width:1}
+.vz-zero{stroke:var(--muted);stroke-width:1;opacity:.6}
+.vz-tick{fill:var(--muted);font:11px var(--mono)}
+.vz-axis{fill:var(--muted);font:11.5px var(--sans)}
+.vz-cat{fill:var(--ink-2);font:600 12px var(--sans)}
+.vz-end,.vz-seglbl{fill:var(--ink-2);font:500 11.5px var(--sans)}
+.vz-val{fill:var(--ink);font:600 12.5px var(--mono)}
+.vz-note{fill:var(--ink-2);font:500 11px var(--mono)}
+.vz-line{fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.vz-base{stroke-width:2;stroke-dasharray:5 4;opacity:.75}
+.vz-trail{fill:none;stroke-width:1.5;opacity:.3;stroke-dasharray:2 3}
+.vz-dot{stroke:var(--card);stroke-width:2.5;transition:r .15s}
+.vz-dot:hover{r:9}
+.vz-mid{fill:var(--card);stroke:var(--ink);stroke-width:2}
+.vz-hair{stroke:var(--ink-2);stroke-width:1}
+.vz-mark{stroke:var(--ink-2);stroke-width:1.2;stroke-dasharray:3 3}
+.vz-brace{fill:none;stroke:var(--ink-2);stroke-width:1.2}
+.vz-bar.vz-floor{fill:var(--floor)}
+.vz-bar.vz-wash{opacity:.22}
+.vz-energy{fill:var(--energy)}.vz-wires{fill:var(--wires)}.vz-util{fill:var(--floor)}
+path.vz-bar{cursor:default;transition:opacity .2s}
+path.vz-bar:hover{opacity:.82}
+path.vz-bar.vz-wash:hover{opacity:.35}
+.vz-win{fill:var(--s-geo);opacity:.08}
+.vz-wintxt{fill:var(--accent-2);font:600 11px var(--sans)}
+.vz-cap{font-size:13.5px;color:var(--ink-2);margin-top:10px;line-height:1.55}
+.vz-data{margin-top:10px;font-size:13px}
+.vz-data summary{cursor:pointer;color:var(--muted);font-size:12.5px}
+.vz-data table{width:100%;border-collapse:collapse;margin-top:8px;font-family:var(--mono);font-size:12px}
+.vz-data th,.vz-data td{text-align:right;padding:4px 6px;border-bottom:1px solid var(--line)}
+.vz-data th:first-child,.vz-data td:first-child{text-align:left}
+.vz-table{overflow-x:auto}
+.vtip{position:fixed;left:0;top:0;z-index:50;pointer-events:none;opacity:0;transition:opacity .12s;background:var(--card);color:var(--ink);border:1px solid var(--line);
+  border-radius:10px;padding:9px 12px;font-size:12.5px;line-height:1.55;box-shadow:var(--shadow);max-width:280px}
+.vtip b{font-weight:600}.vtip .mut{color:var(--muted)}
+.vtip .vk{margin-right:6px;vertical-align:middle}
+@media (max-width:900px){.viz-grid{grid-template-columns:1fr}}
+@media (max-width:600px){.viz{padding:18px 14px 14px}}
 /* reveal */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
@@ -347,9 +409,50 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   </div>
 </section>
 
+<section id="model">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="sec-num">03</span><h2><span lang="en">Inside the Model</span><span lang="zh">模型拆解</span></h2><span class="sec-rule"></span></div>
+    <p class="model-intro rv"><span lang="en">Four views of the results from my SPUR model (v8). Toggle the scenarios, drag the slider, and hover for values.</span><span lang="zh">用 SPUR 模型（v8）的结果做的四个互动图。切换情景、拖动滑块，鼠标悬停可以查看数值。</span></p>
+    <div class="viz-grid">
+      <figure class="viz rv" id="vizA">
+        <figcaption class="vz-head"><h3><span lang="en">When does building early pay off?</span><span lang="zh">提前建设什么时候划算？</span></h3><p><span lang="en">Developer levered IRR: co-locate now (solid) vs. wait for the grid (dashed).</span><span lang="zh">开发商杠杆 IRR：现在就共址（实线）vs. 等待并网（虚线）。</span></p></figcaption>
+        <div class="vz-ctrl"><div class="vz-seg" role="group" aria-label="BTM price"><button data-lever="flat" aria-pressed="false"><span lang="en">Flat $60</span><span lang="zh">固定 $60</span></button><button data-lever="m4" aria-pressed="true"><span lang="en">Model 4 price</span><span lang="zh">模型 4 价格</span></button></div><div class="vz-seg" role="group" aria-label="ITC"><button data-itc="30" aria-pressed="true">ITC 30%</button><button data-itc="0" aria-pressed="false">ITC 0%</button></div></div><div class="vz-legend"></div>
+        <svg viewBox="0 0 560 320" role="img" aria-label="When does building early pay off?"></svg>
+        <p class="vz-cap"><span lang="en">Dots mark the breakeven delay. At the industry-standard $60, co-location never wins; at a cost-consistent price it wins after about 4 years for solar and 2 for wind, and always for geothermal.</span><span lang="zh">圆点是盈亏平衡的延迟年数。按行业惯例 $60 定价，共址永远不如等待；按与成本匹配的价格，光伏约 4 年后、风电约 2 年后开始划算，地热在所有延迟下都划算。</span></p>
+        <details class="vz-data"><summary><span lang="en">View data</span><span lang="zh">查看数据</span></summary><div class="vz-table"></div></details>
+      </figure>
+
+      <figure class="viz rv" id="vizB">
+        <figcaption class="vz-head"><h3><span lang="en">The negotiation zone</span><span lang="zh">谈判区间</span></h3><p><span lang="en">Prices both the developer and the data center would accept.</span><span lang="zh">开发商和数据中心都能接受的价格范围。</span></p></figcaption>
+        <div class="vz-legend"></div>
+        <svg viewBox="0 0 560 250" role="img" aria-label="The negotiation zone"></svg>
+        <p class="vz-cap"><span lang="en">The $60 industry price sits below cost for solar and wind. Dots mark the midpoint price used as the base case.</span><span lang="zh">行业惯例的 $60 低于光伏和风电的成本。圆点是作为基准情景的中点价格。</span></p>
+        <details class="vz-data"><summary><span lang="en">View data</span><span lang="zh">查看数据</span></summary><div class="vz-table"></div></details>
+      </figure>
+
+      <figure class="viz rv" id="vizC">
+        <figcaption class="vz-head"><h3><span lang="en">Who gets the surplus?</span><span lang="zh">收益归谁？</span></h3><p><span lang="en">Drag α to shift the BTM price from the developer's cost toward the grid ceiling.</span><span lang="zh">拖动 α，让表后电价从开发商成本向电网上限移动。</span></p></figcaption>
+        <div class="vz-ctrl vz-slider"><label for="alpha"><span lang="en">Bargaining share α (0 = price at developer cost, 1 = at grid ceiling)</span><span lang="zh">议价分成 α（0 = 按开发商成本定价，1 = 按电网上限定价）</span></label><input id="alpha" type="range" min="0" max="80" value="0" step="1"><div class="vz-out"></div></div><div class="vz-legend"></div>
+        <svg viewBox="0 0 560 330" role="img" aria-label="Who gets the surplus?"></svg>
+        <p class="vz-cap"><span lang="en">Base case: 4-year delay, 30% ITC. The shaded corner is where the developer clears a 10% IRR and the data center saves at least 20%.</span><span lang="zh">基准情景：延迟 4 年、30% ITC。阴影区域表示开发商 IRR 达到 10%，同时数据中心至少节省 20%。</span></p>
+        <details class="vz-data"><summary><span lang="en">View data</span><span lang="zh">查看数据</span></summary><div class="vz-table"></div></details>
+      </figure>
+
+      <figure class="viz rv" id="vizD">
+        <figcaption class="vz-head"><h3><span lang="en">Why the grid ceiling is so high</span><span lang="zh">为什么电网上限这么高</span></h3><p><span lang="en">What a 100 MW data center actually pays per MWh.</span><span lang="zh">100 MW 数据中心每兆瓦时实际要付多少钱。</span></p></figcaption>
+        <div class="vz-legend"></div>
+        <svg viewBox="0 0 560 300" role="img" aria-label="Why the grid ceiling is so high"></svg>
+        <p class="vz-cap"><span lang="en">Energy is under half the delivered cost. The rest (capacity, wires, and fees) is what behind-the-meter supply avoids, and it is the value both sides split.</span><span lang="zh">电能本身不到全包成本的一半。其余部分（容量、输配电和各项费用）是表后供电可以避免的，也正是双方分配的价值。</span></p>
+        <details class="vz-data"><summary><span lang="en">View data</span><span lang="zh">查看数据</span></summary><div class="vz-table"></div></details>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
 <section id="experience">
   <div class="wrap">
-    <div class="sec-head rv"><span class="sec-num">03</span><h2><span lang="en">Experience</span><span lang="zh">工作经历</span></h2><span class="sec-rule"></span></div>
+    <div class="sec-head rv"><span class="sec-num">04</span><h2><span lang="en">Experience</span><span lang="zh">工作经历</span></h2><span class="sec-rule"></span></div>
     <div class="tl">
       <div class="job rv">
         <div class="job-h"><div class="job-co">Soluna</div><div class="job-when"><span lang="en">Jun – Aug 2026</span><span lang="zh">2026.06 – 2026.08</span> · New York</div></div>
@@ -393,7 +496,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <section id="education" class="alt">
   <div class="wrap">
-    <div class="sec-head rv"><span class="sec-num">04</span><h2><span lang="en">Education</span><span lang="zh">教育背景</span></h2><span class="sec-rule"></span></div>
+    <div class="sec-head rv"><span class="sec-num">05</span><h2><span lang="en">Education</span><span lang="zh">教育背景</span></h2><span class="sec-rule"></span></div>
     <div class="edu">
       <div class="edu-card rv">
         <div class="when"><span lang="en">Sep 2025 – Dec 2026</span><span lang="zh">2025.09 – 2026.12</span></div>
@@ -413,7 +516,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <section id="skills">
   <div class="wrap">
-    <div class="sec-head rv"><span class="sec-num">05</span><h2><span lang="en">Skills &amp; Leadership</span><span lang="zh">技能与领导力</span></h2><span class="sec-rule"></span></div>
+    <div class="sec-head rv"><span class="sec-num">06</span><h2><span lang="en">Skills &amp; Leadership</span><span lang="zh">技能与领导力</span></h2><span class="sec-rule"></span></div>
     <div class="skills">
       <div class="sk rv">
         <h4><span lang="en">Modeling</span><span lang="zh">建模</span></h4>
@@ -446,7 +549,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 <section id="beyond" class="alt">
   <div class="wrap">
-    <div class="sec-head rv"><span class="sec-num">06</span><h2><span lang="en">Beyond Work</span><span lang="zh">工作之外</span></h2><span class="sec-rule"></span></div>
+    <div class="sec-head rv"><span class="sec-num">07</span><h2><span lang="en">Beyond Work</span><span lang="zh">工作之外</span></h2><span class="sec-rule"></span></div>
     <div class="beyond">
       <a class="b rv b-link" href="photography.html"><div class="ic">📷</div><div class="t"><span lang="en">Photography</span><span lang="zh">摄影</span></div><div class="s"><span lang="en">Contracted, Visual China Group</span><span lang="zh">视觉中国签约摄影师</span></div><div class="go"><span lang="en">View gallery →</span><span lang="zh">查看作品 →</span></div></a>
       <div class="b rv"><div class="ic">🏎️</div><div class="t">Formula 1</div><div class="s"><span lang="en">Race weekends</span><span lang="zh">比赛周末必看</span></div></div>
@@ -489,6 +592,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     document.querySelectorAll('#langBtn [data-l]').forEach(function(s){s.className=s.getAttribute('data-l')===l?'on':''});
     document.title=l==='zh'?'张乐尧 · 能源金融':'Leyao Zhang · Energy Finance';
     store('lang',l);
+    window.dispatchEvent(new Event('langchange'));
   }
   var saved=store('lang');
   setLang(saved||((navigator.language||'').toLowerCase().indexOf('zh')===0?'zh':'en'));
@@ -541,5 +645,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   svg.addEventListener('mouseleave',function(){show(19)});
 })();
 </script>
+<script src="charts.js" defer></script>
 </body>
 </html>
