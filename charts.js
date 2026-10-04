@@ -51,13 +51,20 @@
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function tween(ms, fn, done) {
     if (reduce) { fn(1); if (done) done(); return; }
-    var t0 = performance.now();
-    (function step(now) { var t = Math.min(1, (now - t0) / ms); fn(1 - Math.pow(1 - t, 3)); if (t < 1) requestAnimationFrame(step); else if (done) done(); })(t0);
+    var t0 = performance.now(), fin = false;
+    function end() { if (fin) return; fin = true; fn(1); if (done) done(); }
+    (function step(now) { if (fin) return; var t = Math.min(1, (now - t0) / ms); fn(1 - Math.pow(1 - t, 3)); if (t < 1) requestAnimationFrame(step); else end(); })(t0);
+    setTimeout(end, ms + 150); // in case animation frames are throttled
   }
   function whenVisible(node, fn) {
-    if (!('IntersectionObserver' in window)) return fn();
-    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); fn(); } }, { threshold: .25 });
-    io.observe(node);
+    var fired = false, io = null;
+    function go() { if (fired) return; fired = true; if (io) io.disconnect(); removeEventListener('scroll', check); fn(); }
+    function check() { var r = node.getBoundingClientRect(); if (r.top < innerHeight * .85 && r.bottom > innerHeight * .15) go(); }
+    if ('IntersectionObserver' in window) {
+      io = new IntersectionObserver(function (es) { if (es.some(function (e) { return e.isIntersecting; })) go(); }, { threshold: .2 });
+      io.observe(node);
+    }
+    addEventListener('scroll', check, { passive: true }); check();
   }
 
   // shared tooltip
