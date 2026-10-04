@@ -33,10 +33,11 @@ nav.solid{background:rgba(11,11,10,.82);backdrop-filter:blur(14px);-webkit-backd
 .btn-ghost .on{color:var(--accent);font-weight:700}
 
 /* hero */
-.hero{position:relative;height:92vh;min-height:520px;display:flex;align-items:flex-end;overflow:hidden}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);animation:settle 2.4s cubic-bezier(.2,.7,.2,1) forwards}
+.hero{position:relative;width:100%;aspect-ratio:3/2;max-height:100vh;overflow:hidden;margin:0 auto}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:88% 55%;opacity:0;animation:fadein 1.6s ease .1s forwards}
+@keyframes fadein{to{opacity:1}}
 @keyframes settle{to{transform:scale(1)}}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,10,.45) 0%,rgba(11,11,10,0) 30%,rgba(11,11,10,.15) 55%,var(--bg) 100%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,10,.5) 0%,rgba(11,11,10,0) 12%,rgba(11,11,10,0) 88%,var(--bg) 100%)}
 .hero-txt{position:relative;z-index:2;padding-bottom:64px;width:100%}
 .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
 h1{font-family:var(--serif);font-weight:400;font-size:clamp(52px,9vw,128px);line-height:.95;letter-spacing:-.04em}
@@ -98,9 +99,8 @@ footer a{color:var(--ink-2)}
   .s-num{padding:0}.s-meta{text-align:left;padding:0}
   .series{padding:64px 0 12px}
   .lb .pv,.lb .nx{top:auto;bottom:22px;transform:none}
-  .hero{height:78vh}
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.ph img{opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.ph img,.hero img{opacity:1}}
 </style>
 </head>
 <body>
